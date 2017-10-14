@@ -180,8 +180,6 @@ class ViewController: UIViewController {
                             print("error trying to convert data to JSON")
                             return
                     }
-                    // now we have the todo
-                    // let's just print it to prove we can access it
                     self.album = albumJson
             
                     print("Album is: \(self.album)")
