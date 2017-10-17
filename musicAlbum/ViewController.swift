@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  musicAlbum
-//
-//  Created by kamil on 13/10/2017.
-//  Copyright © 2017 kamil. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -17,7 +9,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         consumeJson()
         saveButton.isEnabled = false
-        // Do any additional setup after loading the view, typically from a nib.
     }
     @IBOutlet weak var getArtist: UITextField!
     @IBOutlet weak var getTitle: UITextField!
@@ -127,7 +118,6 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func checkIfNotEmpty() -> Bool {
@@ -156,8 +146,8 @@ class ViewController: UIViewController {
     }
     
     func consumeJson() {
-        let todoEndpoint: String = "https://isebi.net/albums.php"
-        guard let url = URL(string: todoEndpoint) else {
+        let urlToResource: String = "https://isebi.net/albums.php"
+        guard let url = URL(string: urlToResource) else {
             print("Error: cannot create URL")
             return
         }
@@ -166,7 +156,6 @@ class ViewController: UIViewController {
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest, completionHandler:
             { (data: Data?, response: URLResponse?, error: Error?) in
-                // this is where the completion handler code goes
                 if let response = response {
                     print(response)
                 }
@@ -177,9 +166,9 @@ class ViewController: UIViewController {
                 do {
                     guard let albumJson = try JSONSerialization.jsonObject(with: data!, options: [])
                         as? [[String:Any]] else {
-                            print("error trying to convert data to JSON")
+                            print("error during convert data to JSON")
                             return
-                    }
+                    }	
                     self.album = albumJson
             
                     print("Album is: \(self.album)")
@@ -194,7 +183,7 @@ class ViewController: UIViewController {
                         self.previousButton.isEnabled = false
                     }
                 } catch  {
-                    print("error trying to convert data to JSON")
+                    print("error during convert data to JSON")
                     return
                 }
         })
